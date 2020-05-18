@@ -10,7 +10,7 @@ services:
        restart: always
        environment:
            MYSQL_ROOT_PASSWORD: rootpass
-           MYSQL_USER: garvit
+           MYSQL_USER: kailash
            MYSQL_PASSWORD: project
            MYSQL_DATABASE: mydb
 
@@ -26,7 +26,7 @@ services:
              - wp_storage:/var/www/html
         environment:
              WORDPRESS_DB_HOST: dbos
-             WORDPRESS_DB_USER: garvit
+             WORDPRESS_DB_USER: kailash
              WORDPRESS_DB_PASSWORD: project
              WORDPRESS_DB_NAME: mydb
 
