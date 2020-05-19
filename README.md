@@ -1,1 +1,33 @@
 # docker-project
+version: '3'
+volumes:
+     mysql_storage:
+     wp_storage:
+services:
+    dbos:
+       image: mysql:5.7
+       volumes:
+           -  mysql_storage:/var/lib/mysql
+       restart: always
+       environment:
+           MYSQL_ROOT_PASSWORD: rootpass
+           MYSQL_USER: kailash
+           MYSQL_PASSWORD: project
+           MYSQL_DATABASE: mydb
+
+
+    wpos:
+        image: wordpress:5.1.1-php7.3-apache
+        restart: always
+        depends_on:
+                 - dbos
+        ports:
+               - 8080:80
+        volumes:
+             - wp_storage:/var/www/html
+        environment:
+             WORDPRESS_DB_HOST: dbos
+             WORDPRESS_DB_USER: kailash
+             WORDPRESS_DB_PASSWORD: project
+             WORDPRESS_DB_NAME: mydb
+
